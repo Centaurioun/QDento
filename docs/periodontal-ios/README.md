@@ -63,3 +63,11 @@ Plan 01 evidence and synthesis:
   - Synthesized rendering, edit, finding, asset, and evidence contract for downstream Plan 02/03 interfaces.
   - Freezes the explicitly labeled new-product named-site mapping and classifies missing QDento runtime captures as a later parity-acceptance gap.
   - Readiness: `READY_WITH_NONBLOCKING_UNRESOLVED_ITEMS`; no initial-domain or geometry blocker remains.
+
+
+Plan 01 freeze and acceptance:
+- `docs/superpowers/reviews/2026-09-30-plan01-parallel-batch-review.md`
+- `docs/superpowers/reviews/2026-09-30-plan01-acceptance.md`
+- Frozen branch: `freeze/p01-rendering-parity-contract-v1`
+- Contract verdict: `READY_WITH_NONBLOCKING_UNRESOLVED_ITEMS`
+- Plan 01 acceptance: `ACCEPTED_WITH_NONBLOCKING_UNRESOLVED_ITEMS`
