@@ -81,7 +81,7 @@
 - [ ] **Step 2: Implement tap/hit-area behavior**
 - [ ] **Step 3: Verify blood-drop-style active marker**
 - [ ] **Step 4: Run unit/UI tests**
-- [ ] **Step 6: Commit**
+- [ ] **Step 5: Commit**
 
 ### Task 3: FMPS/FMBS four-wedge interaction
 
@@ -189,7 +189,7 @@
 
 - [ ] **Step 5: Run persistence tests**
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ### Task 7: Integrate save/reopen + live summary
 
