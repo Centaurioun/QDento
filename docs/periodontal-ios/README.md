@@ -50,3 +50,16 @@ Independent plan review:
 - `docs/superpowers/reviews/2026-09-30-periodontal-ios-plan-review.md`
   - Second adversarial review of the approved spec + implementation plans.
   - Records source-backed plan corrections for PD/CAL/GM editing, attached gingiva/recession, tooth rendering/provenance, parity-summary separation, and final reviewer expansion.
+
+Plan 01 evidence and synthesis:
+- `docs/periodontal-ios/research/runtime/A-contour-site-orientation.md`
+- `docs/periodontal-ios/research/runtime/B-full-mouth-findings.md`
+- `docs/periodontal-ios/research/runtime/C-parity-fixtures.md`
+- `docs/periodontal-ios/research/runtime/D-measurement-edit-semantics.md`
+- `docs/periodontal-ios/research/runtime/E-tooth-rendering-assets.md`
+- `docs/periodontal-ios/research/runtime/fixtures/README.md`
+  - Five accepted source-evidence reports and deterministic fixture/capture protocol; evidence files are preserved unchanged.
+- `docs/periodontal-ios/contracts/2026-09-30-rendering-parity-contract-v1.md`
+  - Synthesized rendering, edit, finding, asset, and evidence contract for downstream Plan 02/03 interfaces.
+  - Freezes the explicitly labeled new-product named-site mapping and classifies missing QDento runtime captures as a later parity-acceptance gap.
+  - Readiness: `READY_WITH_NONBLOCKING_UNRESOLVED_ITEMS`; no initial-domain or geometry blocker remains.
