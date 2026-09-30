@@ -63,7 +63,7 @@
   - Columns: FDI/tooth index, domain site, QDento measurement index, chart position, local chart index, final visible left/middle/right position, evidence status.
   - Expected: no clinically named mapping marked verified without source/runtime support.
 
-- [ ] **Step 5: Commit evidence**
+- [ ] **Step 6: Commit evidence**
   ```bash
   git add docs/periodontal-ios/research/runtime/A-contour-site-orientation.md
   git commit -m "docs: map QDento contour site orientation"
@@ -95,7 +95,13 @@
   - Verify icon/state and presenter update flow.
   - Verification: BOP remains distinct from FMBS.
 
-- [ ] **Step 4: Capture runtime/screenshot cases**
+- [ ] **Step 4: Freeze QDento parity-summary update semantics for BOP/FMBS/FMPS**
+  - Record the exact source formula/denominator for the visible BOP and FMBS statistics.
+  - Record the exact legacy FMPS/HI meaning, including whether it counts true or false values.
+  - Record how disabled/missing teeth affect denominators.
+  - Mark these formulas PARITY_LEGACY, not final clinical authority.
+
+- [ ] **Step 5: Capture runtime/screenshot cases**
   - One FMPS wedge, one FMBS wedge, and one BOP site active on a clearly identified tooth.
   - Verification: screenshot label includes FDI, control type, source index when known.
 
@@ -246,6 +252,7 @@
   - final orientation rules where verified;
   - four-wedge neutral IDs and geometry;
   - BOP visual placement;
+  - QDento parity-summary formulas/update semantics for BOP/FMBS/FMPS;
   - PD/CAL/GM edit transition table;
   - attached-gingiva applicability and persisted mapping;
   - derived recession rule;
