@@ -16,6 +16,11 @@ Documents:
    - Remaining evidence gaps.
    - Items that are deliberately deferred until later phases.
 
+3. 2026-09-30-second-brainstorming-review.md
+   - Independent second-pass adversarial review of the first brainstorming synthesis.
+   - Source-level refinements for FMPS/FMBS, BOP, mobility, date/lifecycle behavior and remaining parity evidence.
+   - Records the second Improved 6-Cycle Iterative Refinement pass.
+
 Key principle:
 
 QDento is the visual and interaction reference for the first parity-oriented iPhone demo. Clinica is the preferred source for a cleaner periodontal domain model and the newer accepted clinical calculation lineage. The future iOS application should be implemented natively rather than as a literal Qt-to-Swift architectural translation.
