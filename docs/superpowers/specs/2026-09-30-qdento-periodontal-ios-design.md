@@ -2,7 +2,7 @@
 
 Date: 2026-09-30
 
-Status: Proposed design specification for human review.
+Status: Approved by the user on 2026-09-30.
 
 This document is the formal design artifact produced after two brainstorming passes and two six-cycle refinement rounds.
 
@@ -587,7 +587,7 @@ Converted the brainstorming conclusions into a reviewable design with clear sour
 
 ## 29. Approval gate
 
-This specification is ready for human review.
+This specification has been approved by the user.
 
 After approval:
 1. invoke Superpowers writing-plans;
