@@ -140,17 +140,26 @@ Later calculation authority should come from the accepted Clinica clinical linea
 
 The remaining research should be a narrow QDento runtime parity closure.
 
+Source review has now resolved the FMPS/FMBS visual construction itself:
+- four positions per tooth;
+- index order left, up, right, down;
+- separate FMPS and FMBS rows;
+- separate persisted arrays.
+
+What remains is the clinical/runtime interpretation and final screen alignment.
+
 Required evidence:
 
 1. One-to-one site-to-visible-position mapping for MB/B/DB and ML/L/DL.
 2. Net upper/lower and facial/oral contour transforms.
-3. Four FMPS/FMBS wedge mapping and toggle order.
-4. BOP marker placement.
-5. Deterministic screenshots using sentinel values.
-6. Reference screenshots for at least:
+3. Tooth-number-to-FMPS/FMBS group alignment across both arches.
+4. Anatomical interpretation, if any, of the four left/up/right/down FMPS/FMBS wedges.
+5. Runtime confirmation of BOP marker placement at named sites.
+6. Deterministic screenshots using sentinel values.
+7. Reference screenshots for at least:
    - healthy baseline;
    - asymmetric three-site contour;
-   - recession case;
+   - recession / positive-negative margin case;
    - BOP case;
    - FMPS/FMBS selected-sector case;
    - missing/implant state.
@@ -233,3 +242,19 @@ The next major gate is:
 - only then invoke Superpowers writing-plans.
 
 Until that happens, this branch remains a research/brainstorming branch.
+
+
+## M. Second-pass evidence refinements
+
+The second brainstorming review tightened several earlier statements:
+
+- FMPS/FMBS visual geometry is no longer fully unresolved. QDento source verifies left/up/right/down triangles by `index % 4`. Only anatomical naming remains unresolved.
+- FMPS, FMBS, and BOP are serialized periodontal fields in QDento.
+- BOP uses six site-level positions; FMBS uses four per tooth. They are distinct source concepts.
+- Mobility exists in QDento `PerioStatus` but is omitted from the periodontal JSON serializer. The future app should not reproduce this gap.
+- QDento's date-change behavior does not reload date-specific tooth status and therefore should not be treated as a parity requirement.
+- QDento same-day record behavior is a legacy lifecycle behavior, not a design authority for the new app.
+- The remaining parity closure is primarily runtime orientation/anatomical mapping plus deterministic screenshots.
+
+Full evidence and rationale:
+`docs/periodontal-ios/2026-09-30-second-brainstorming-review.md`
