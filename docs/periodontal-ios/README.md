@@ -44,3 +44,9 @@ Approved-spec implementation planning set:
 - `docs/superpowers/plans/2026-09-30-05-parity-acceptance-hardening.md`
 
 These plans implement the approved design in gated phases. They are intended for separate Codex instances / Task Goal Packets, not one monolithic implementation session.
+
+
+Independent plan review:
+- `docs/superpowers/reviews/2026-09-30-periodontal-ios-plan-review.md`
+  - Second adversarial review of the approved spec + implementation plans.
+  - Records source-backed plan corrections for PD/CAL/GM editing, attached gingiva/recession, tooth rendering/provenance, parity-summary separation, and final reviewer expansion.
