@@ -154,7 +154,7 @@ docs/
 
 - [ ] **Step 6: Run focused tests; expected PASS**
 
-- [ ] **Step 8: Commit**
+- [ ] **Step 7: Commit**
   ```bash
   git add PeriodontalIOS/Domain/ToothID.swift PeriodontalIOS/Domain/PeriodontalSite.swift PeriodontalIOSTests/Domain
   git commit -m "feat: add tooth and periodontal site domain"
@@ -209,7 +209,7 @@ docs/
 
 - [ ] **Step 7: Run tests; expected PASS**
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 8: Commit**
 
 ### Task 4: Natural tooth, implant, and exam aggregate
 
@@ -221,8 +221,8 @@ docs/
 
 **Interfaces:**
 - Produces:
-  - `struct NaturalToothRecord`
-  - `struct ImplantRecord`
+  - `struct NaturalToothRecord` with named site measurements, facial/oral surface supplements, mobility, furcation, and FMPS/FMBS findings
+  - `struct ImplantRecord` with implant-specific site measurements and implant mobility
   - `enum ChartPositionRecord { case natural(NaturalToothRecord), implant(ImplantRecord), missing(ToothID) }`
   - `struct PeriodontalExam`
 
@@ -236,7 +236,7 @@ docs/
 - [ ] **Step 3: Implement aggregate types**
 
 - [ ] **Step 4: Write Codable round-trip test**
-  - Includes nil/not-assessed, mobility, furcation, BOP, FMPS/FMBS, implant, missing position.
+  - Includes nil/not-assessed, mobility, furcation, BOP, FMPS/FMBS, attached gingiva, implant, missing position.
 
 - [ ] **Step 5: Run tests; expected PASS**
 
