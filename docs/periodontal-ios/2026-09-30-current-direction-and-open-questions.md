@@ -258,3 +258,56 @@ The second brainstorming review tightened several earlier statements:
 
 Full evidence and rationale:
 `docs/periodontal-ios/2026-09-30-second-brainstorming-review.md`
+
+
+## N. Rule for unresolved QDento semantics
+
+Not every undocumented QDento detail must be reverse-engineered before the new application can proceed.
+
+Classify each unknown as:
+
+1. **Parity-critical evidence** — must be runtime/source verified because it changes the QDento visual behavior we want to reproduce.
+2. **New-product clinical/product decision** — define explicitly for the new app, then validate with a periodontist / clinical colleague where appropriate.
+3. **Deferred** — postpone because it does not block the next milestone.
+
+The four FMPS/FMBS wedges are currently:
+- visually source-verified as left / up / right / down;
+- not yet anatomically named from QDento source;
+- eligible for a new clinically coherent mapping after expert review;
+- safe to keep as neutral wedge identities in the first parity prototype.
+
+Unknown original-author intention must not be confused with required product truth.
+
+## O. Codex orchestration model
+
+The project should use separate Codex instances for separate deliverables.
+
+Preferred unit:
+**Task Goal Packet**
+
+Each packet contains:
+- Goal
+- Sources to read
+- Required Superpowers skills
+- Required iOS plugin, when applicable
+- Scope
+- Allowed writes
+- Forbidden writes
+- Acceptance evidence
+- Output artifacts
+- Stop condition
+
+Use:
+`[@Build iOS Apps](plugin://build-ios-apps@openai-curated-remote)`
+
+for Swift/SwiftUI/Xcode/simulator tasks.
+
+Do not give the whole iOS project to one Codex instance.
+
+Use parallel subagents only for genuinely independent tasks; otherwise preserve sequential dependency gates.
+
+Research agents may write dedicated evidence notes if explicitly assigned a documentation path.
+
+Implementation agents later should work in isolated branches/worktrees.
+
+Review agents remain read-only unless a remediation task gives explicit write authority.
