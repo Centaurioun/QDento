@@ -18,6 +18,8 @@
 - No backend/cloud/authentication.
 - Persistence implementation is demo-local Codable JSON behind a protocol.
 - BOP, FMBS, FMPS remain distinct.
+- PD, CAL, and GM are separately editable according to the frozen Plan 01 transition table.
+- Attached gingiva is editable where applicable; recession is derived/read-only.
 - Four wedges keep neutral IDs.
 - Do not implement final Clinica Stage/Grade/risk clinical engine.
 - Summary/risk UI must consume protocols/results, not legacy formulas directly.
@@ -39,6 +41,7 @@
 - Create: `PeriodontalIOS/Features/PeriodontalChart/PeriodontalExamModel.swift`
 - Create: `PeriodontalIOS/Behavior/MeasurementEditingRules.swift`
 - Create: `PeriodontalIOS/Features/PeriodontalChart/MeasurementRowView.swift`
+- Create: `PeriodontalIOS/Features/PeriodontalChart/SurfaceSupplementRowView.swift`
 - Test: `PeriodontalIOSTests/Behavior/MeasurementEditingRulesTests.swift`
 - UI Test: `PeriodontalIOSUITests/MeasurementEditingFlowTests.swift`
 
@@ -47,22 +50,29 @@
   - `@Observable final class PeriodontalExamModel`
   - edit methods keyed by `ToothID` + `PeriodontalSite`, not packed indices.
 
-- [ ] **Step 1: Write failing editing-rule tests**
-  - PD update affects target site only.
-  - Clinical GM update affects target site only.
-  - Derived CAL = PD + clinical GM.
-  - nil/not-assessed semantics preserved.
+- [ ] **Step 1: Write failing editing-rule tests from the frozen transition table**
+  - Direct PD edit affects target site only and recomputes/preserves dependent values exactly as specified.
+  - Direct CAL edit is supported and affects target site only.
+  - Direct clinical GM edit is supported and maps correctly to QDento-compatible display semantics.
+  - Derived CAL = PD + clinical GM whenever the selected transition mode says CAL is derived.
+  - nil/not-assessed semantics are preserved.
+  - QDento legacy range/cap behavior is reproduced only where Plan 01 classifies it PARITY_REQUIRED.
 
 - [ ] **Step 2: Implement editing rules**
 
 - [ ] **Step 3: Bind focused measurement row view**
+  - Keep the numeric-input control separate from domain editing rules so the touch-entry UI can change later without changing clinical semantics.
 
-- [ ] **Step 4: Write UI test**
+- [ ] **Step 4: Bind attached-gingiva / derived-recession surface row**
+  - Attached gingiva is editable only on applicable surfaces.
+  - Recession is displayed from the domain-derived value and is not directly editable.
+
+- [ ] **Step 5: Write UI test**
   - Change one site value.
   - Assert corresponding contour accessibility value/state changes.
   - Assert adjacent site remains unchanged.
 
-- [ ] **Step 5: Build/run simulator and commit**
+- [ ] **Step 6: Build/run simulator and commit**
 
 ### Task 2: BOP interaction
 
@@ -176,7 +186,7 @@
   - actor-backed JSON implementation.
 
 - [ ] **Step 1: Write failing save/load round-trip test**
-  - Include PD/GM/CAL, BOP, FMPS/FMBS, mobility, furcation, implant, missing, nil/not-assessed.
+  - Include PD/GM/CAL, BOP, FMPS/FMBS, attached gingiva, mobility, furcation, implant, missing, nil/not-assessed.
 
 - [ ] **Step 2: Write failing update-existing-exam test**
   - Explicit exam ID; do not copy QDento same-day ambiguity.
@@ -204,7 +214,8 @@
 - Produces: complete interactive demo flow.
 
 - [ ] **Step 1: Write UI round-trip scenario**
-  - Edit a measurement.
+  - Directly edit PD, CAL, and GM in the reference flow.
+  - Edit attached gingiva on an applicable surface and verify derived recession display.
   - Toggle BOP and one FMPS/FMBS wedge.
   - Set mobility/furcation.
   - Save.
@@ -223,7 +234,8 @@
 
 ## Plan acceptance gate
 
-- Live PD/GM/CAL edits move only intended contour points.
+- Live PD/CAL/GM edits follow the frozen transition table and move only intended contour points.
+- Attached gingiva persists and recession remains derived/read-only.
 - BOP and wedge controls are independently tappable.
 - Mobility/furcation persist.
 - Save/reopen round-trip is proven by UI test.
