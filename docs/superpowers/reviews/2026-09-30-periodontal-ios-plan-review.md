@@ -119,3 +119,21 @@ The same pass also strengthened deterministic fixtures so the future parity suit
 - a missing/implant tooth-visual case.
 
 This matters because those behaviors were precisely the omissions identified by the independent review; they now have explicit fixture coverage rather than existing only as prose requirements.
+
+
+### Domain nullability correction
+
+The review corrected the planned attachment-level type so `source` is optional when CAL is not assessed. This matches the Clinica reference model more faithfully and prevents a meaningless `derived/manual` source from being required for a nil value.
+
+### Parity-summary versus modern metrics correction
+
+The revised plan now requires two separate concepts:
+
+- **modern descriptive metrics** using assessed-site/null-aware semantics;
+- **QDentoParitySummaryProvider** reproducing the frozen legacy BOP/FMBS/FMPS/HI behavior only for parity/reference purposes.
+
+This prevents the first demo from either losing the QDento feedback the user likes or accidentally promoting QDento legacy statistics as the final clinical model.
+
+### Repository bootstrap safety
+
+Plan 02 now forbids falling back to creating the iOS project inside QDento or Clinica if remote GitHub creation is unavailable. The agent may create a dedicated local repository and must stop for remote authorization instead.
