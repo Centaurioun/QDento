@@ -67,7 +67,7 @@
 
 ### Task 3: Parallel independent reviews
 
-**Execution:** 5 independent read-only reviewer Codex instances in parallel.
+**Execution:** 7 independent read-only reviewer Codex instances in parallel.
 
 **Artifacts:**
 - `docs/reviews/first-demo/domain-review.md`
@@ -75,15 +75,19 @@
 - `docs/reviews/first-demo/swiftui-review.md`
 - `docs/reviews/first-demo/persistence-review.md`
 - `docs/reviews/first-demo/parity-adversarial-review.md`
+- `docs/reviews/first-demo/accessibility-touch-review.md`
+- `docs/reviews/first-demo/provenance-licensing-review.md`
 
 **Reviewer focus:**
 - domain separation;
 - site/orientation/GM geometry;
 - SwiftUI state/view structure;
 - persistence round-trip/lifecycle;
-- adversarial parity/educational behavior.
+- adversarial parity/educational behavior;
+- accessibility/touch target semantics at realistic iPhone scale;
+- prototype asset/source provenance and production-replacement risk.
 
-- [ ] **Step 1: Dispatch all 5 reviewers with isolated contexts**
+- [ ] **Step 1: Dispatch all 7 reviewers with isolated contexts**
 - [ ] **Step 2: Reviewers inspect code/tests/evidence read-only**
 - [ ] **Step 3: Coordinator deduplicates findings**
 - [ ] **Step 4: Classify BLOCKING / NONBLOCKING / FUTURE**
@@ -137,7 +141,28 @@
 - [ ] **Step 3: If controls are usable, keep parity UI unchanged**
 - [ ] **Step 4: If not, create a separate bounded design experiment for selected-tooth enlargement; do not silently redesign during this plan**
 
-### Task 8: Freeze first-demo acceptance report
+### Task 8: Freeze clinical-expert question register
+
+**Files:**
+- Create: `docs/clinical-review/questions-for-periodontist.md`
+
+**Interfaces:**
+- Produces: a concise list of deferred clinical/product questions that the user can review with a periodontist colleague without blocking the neutral parity demo.
+
+- [ ] **Step 1: Extract unresolved clinical semantics**
+  - Anatomical naming of the four FMPS/FMBS wedges.
+  - Any terminology in the summary/risk shell that should change before teaching use.
+  - Any attached-gingiva applicability/terminology question not already source-verified.
+
+- [ ] **Step 2: Separate questions from proposed answers**
+  - Do not present QDento author intent as known.
+  - Include the current recommended interpretation only as a proposal for expert review.
+
+- [ ] **Step 3: Mark each question BLOCKS_TEACHING_RELEASE / NONBLOCKING_PRIVATE_DEMO / FUTURE_CLINICAL_ENGINE**
+
+- [ ] **Step 4: Commit the register**
+
+### Task 9: Freeze first-demo acceptance report
 
 **Files:**
 - Create: `docs/releases/first-demo-acceptance.md`
@@ -159,4 +184,6 @@ Do not start Clinica clinical integration until:
 - full build/unit/UI verification passes;
 - deterministic fixture evidence exists;
 - touch usability is acceptable for the first demo or separately scoped for redesign;
+- prototype asset provenance has been independently reviewed;
+- deferred clinical questions are recorded for later colleague review;
 - acceptance report is frozen.
