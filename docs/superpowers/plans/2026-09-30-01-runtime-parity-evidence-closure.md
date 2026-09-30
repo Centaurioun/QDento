@@ -4,7 +4,7 @@
 
 **Goal:** Close the narrow QDento visual/orientation evidence needed to implement the iOS renderer without repeating the broad QDento audit.
 
-**Architecture:** Run three independent evidence lanes in parallel against QDento source/runtime/screenshots, then a synthesizer freezes a rendering/parity contract. No QDento application code or Clinica code is modified.
+**Architecture:** Run five independent evidence lanes in parallel against QDento source/runtime/screenshots, then a synthesizer freezes a rendering/parity contract. No QDento application code or Clinica code is modified.
 
 **Tech Stack:** QDento C++/Qt source, available local QDento runtime/screenshot evidence, Markdown, Git/GitHub.
 
@@ -142,16 +142,94 @@
   git commit -m "docs: define QDento parity fixtures"
   ```
 
-### Task 4: Synthesize Rendering/Parity Contract v1
+### Task 4: PD/CAL/GM editing plus attached-gingiva/recession semantics
 
-**Execution:** Sequential coordinator/synthesizer after Tasks 1–3; read all three reports and independently spot-check source.
+**Execution:** Independent research Codex instance; may run in parallel with Tasks 1–3 and 5.
+
+**Files:**
+- Create: `docs/periodontal-ios/research/runtime/D-measurement-edit-semantics.md`
+
+**Interfaces:**
+- Consumes: QDento `PerioPresenter.cpp`, `PerioView.cpp/.ui`, `PerioStatus.h`, `Parser.cpp`; Clinica site-measurement sign convention as semantic reference.
+- Produces: explicit transition/range table for PD, CAL, GM, attached gingiva, and derived recession.
+
+- [ ] **Step 1: Record source edit handlers and ranges**
+  - PD: QDento range and `pdChanged` behavior.
+  - CAL: QDento range and `calChanged` behavior.
+  - GM: QDento range and `gmChanged` behavior.
+  - Record any special constraint/cap logic.
+
+- [ ] **Step 2: Derive the clinical-sign translation table**
+  - Separate canonical Clinica-style clinical GM from QDento display GM.
+  - For each direct edit path, state which values are held constant and which are recomputed.
+
+- [ ] **Step 3: Record attached-gingiva semantics**
+  - Map persisted `AG[64]` to tooth/surface positions.
+  - Record applicability/disabled surfaces.
+
+- [ ] **Step 4: Record recession semantics**
+  - Verify the source derivation across three sites on a surface.
+  - State whether recession is persisted or derived.
+
+- [ ] **Step 5: Define parity-critical versus legacy-only edge behavior**
+  - Do not silently copy odd legacy constraints.
+  - Classify each as PARITY_REQUIRED / NEW_PRODUCT_RULE / DEFERRED.
+
+- [ ] **Step 6: Commit evidence**
+  ```bash
+  git add docs/periodontal-ios/research/runtime/D-measurement-edit-semantics.md
+  git commit -m "docs: map QDento periodontal edit semantics"
+  ```
+
+### Task 5: Tooth rendering, assets, and provenance closure
+
+**Execution:** Independent research Codex instance; may run in parallel with Tasks 1–4.
+
+**Files:**
+- Create: `docs/periodontal-ios/research/runtime/E-tooth-rendering-assets.md`
+
+**Interfaces:**
+- Consumes: QDento `ToothPainter.cpp`, `SpriteSheets.cpp/.h`, `PerioScene.cpp`, QRC/resource manifests, existing QDento provenance notes.
+- Produces: minimum visual-state contract and prototype asset/provenance manifest for Plan 03.
+
+- [ ] **Step 1: Map the tooth visual composition used by the periodontal screen**
+  - Base tooth/root layers.
+  - Periodontal layer.
+  - Missing/extracted state.
+  - Implant state.
+  - Any state that the first demo fixture actually needs.
+
+- [ ] **Step 2: Map tooth-index → sprite/type/width behavior**
+  - Record permanent tooth type mapping and any arch/quadrant mirroring.
+
+- [ ] **Step 3: Identify the minimum prototype asset set**
+  - Do not copy unrelated QDento dental-treatment layers just because the generic painter can render them.
+
+- [ ] **Step 4: Record provenance status per candidate asset**
+  - Source path.
+  - QDento license context.
+  - Whether direct prototype reuse is needed.
+  - Whether production replacement is expected.
+
+- [ ] **Step 5: Define replaceable tooth-visual contract**
+  - State information required by iOS rendering independent of raster filenames.
+
+- [ ] **Step 6: Commit evidence**
+  ```bash
+  git add docs/periodontal-ios/research/runtime/E-tooth-rendering-assets.md
+  git commit -m "docs: close QDento tooth rendering asset evidence"
+  ```
+
+### Task 6: Synthesize Rendering/Parity Contract v1
+
+**Execution:** Sequential coordinator/synthesizer after Tasks 1–5; read all five reports and independently spot-check source.
 
 **Files:**
 - Create: `docs/periodontal-ios/contracts/2026-09-30-rendering-parity-contract-v1.md`
 - Modify: `docs/periodontal-ios/README.md`
 
 **Interfaces:**
-- Consumes: Tasks 1–3 evidence.
+- Consumes: Tasks 1–5 evidence.
 - Produces: frozen input contract for Plans 02–05.
 
 - [ ] **Step 1: Reconcile contradictions**
@@ -166,6 +244,10 @@
   - final orientation rules where verified;
   - four-wedge neutral IDs and geometry;
   - BOP visual placement;
+  - PD/CAL/GM edit transition table;
+  - attached-gingiva applicability and persisted mapping;
+  - derived recession rule;
+  - tooth visual state/provider requirements and prototype asset provenance;
   - fixture IDs.
 
 - [ ] **Step 3: Classify remaining unknowns**
@@ -190,4 +272,6 @@ Proceed to Plan 02 only when:
 - contract file exists;
 - no BLOCKS_GEOMETRY item remains;
 - any unresolved wedge anatomical naming is explicitly NONBLOCKING_PRODUCT_DECISION;
-- deterministic fixtures are reproducible from written inputs.
+- deterministic fixtures are reproducible from written inputs;
+- PD/CAL/GM edit transitions are explicit enough to implement without agent guesswork;
+- prototype tooth-visual provenance is documented.
