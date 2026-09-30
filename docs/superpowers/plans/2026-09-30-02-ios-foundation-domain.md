@@ -94,7 +94,10 @@ docs/
 - Consumes: approved spec; Plan 01 rendering contract.
 - Produces: buildable/testable repository used by every later task.
 
-- [ ] **Step 1: Create repo and standard SwiftUI app**
+- [ ] **Step 1: Preflight repository/Xcode capability and create the standard SwiftUI app**
+  - Verify installed Xcode and iOS Simulator availability.
+  - Verify the execution environment can create/use the intended GitHub remote.
+  - If remote-repository creation is unavailable, create the local Git repository/Xcode project in a dedicated periodontal-ios directory, STOP before pushing anywhere, and ask the coordinator/user to create or authorize the remote. Never place the app inside the QDento or Clinica repositories as a fallback.
   - Product module: `PeriodontalIOS`.
   - Unit-test target: `PeriodontalIOSTests`.
   - UI-test target: `PeriodontalIOSUITests`.
@@ -138,7 +141,7 @@ docs/
   - `var PeriodontalSite.surface: PeriodontalSurface`
 
 - [ ] **Step 1: Write failing FDI validity/order tests**
-  - Assert valid permanent FDI values used by the chart.
+  - Assert the exact permanent FDI set: 11–18, 21–28, 31–38, 41–48; reject invalid decade/position values.
   - Assert arch/quadrant helpers do not depend on array position.
 
 - [ ] **Step 2: Run tests and confirm failure**
@@ -173,7 +176,7 @@ docs/
 **Interfaces:**
 - Produces:
   - `enum MeasurementSource: String, Codable, Sendable { case derived, manual }`
-  - `struct AttachmentLevel: Codable, Equatable, Sendable { var valueMM: Int?; var source: MeasurementSource }`
+  - `struct AttachmentLevel: Codable, Equatable, Sendable { var valueMM: Int?; var source: MeasurementSource? }`
   - `struct SiteMeasurement: Codable, Equatable, Sendable`
   - `struct ToothSurfaceMeasurement: Codable, Equatable, Sendable { var attachedGingivaMM: Int? }`
   - `var probingDepthMM: Int?`
