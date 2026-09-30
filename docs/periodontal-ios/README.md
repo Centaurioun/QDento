@@ -26,3 +26,10 @@ Key principle:
 QDento is the visual and interaction reference for the first parity-oriented iPhone demo. Clinica is the preferred source for a cleaner periodontal domain model and the newer accepted clinical calculation lineage. The future iOS application should be implemented natively rather than as a literal Qt-to-Swift architectural translation.
 
 No Swift product implementation, Xcode project scaffolding, QDento deletion, or Clinica modification is authorized by these notes.
+
+
+Formal design specification:
+- `docs/superpowers/specs/2026-09-30-qdento-periodontal-ios-design.md`
+  - Consolidates the two brainstorming rounds into the architectural design proposed for human approval.
+  - Defines the phased multi-agent strategy and the Task Goal Packet model.
+  - Must be approved before the separate implementation plan is written.
