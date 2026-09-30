@@ -248,4 +248,69 @@ Any outside-source conclusion must be labeled separately from repository/runtime
 - Checked task dependencies and interfaces across all five plans.
 - Ensured every Swift/iOS task carries the Build iOS Apps requirement.
 - Ensured research-only Plan 01 does not require the iOS plugin unnecessarily.
-- Ensured no TODO/TBD placeholders are required for execution; remaining unknowns are expressed as evidence gates or explicit later product decisions.
+- Ensured no unresolved placeholder tokens are required for execution; remaining unknowns are expressed as evidence gates or explicit later product decisions.
+
+
+## Plan self-review against the approved spec
+
+### Spec coverage
+
+- Product intent / student audience → Master roadmap + Plans 03–05.
+- Authority split → all plans' global constraints.
+- No literal Qt translation → Plans 02–03.
+- Named six-site model → Plan 02.
+- GM/CAL sign bridge → Plans 02–03.
+- Dynamic contour → Plan 03.
+- FMPS/FMBS four-wedge control → Plans 01, 03, 04.
+- Six-site BOP → Plans 01, 03, 04.
+- Mobility/furcation → Plans 02, 04.
+- Natural tooth / implant separation → Plan 02 + Plan 04 guards.
+- Summary/risk separation → Plan 04.
+- Legacy behaviors excluded → Plans 02 and 04.
+- Unknown-QDento-semantics rule → Plan 01 gates.
+- Touch-first strategy → Plans 04–05.
+- First-demo persistence → Plan 04.
+- Xcode/Codex hybrid workflow → Master + Plan 02 onward.
+- Build iOS Apps plugin policy → Plans 02–05.
+- Multi-agent/task-packet architecture → Master + Plan 05 reviewers.
+- Parity acceptance → Plan 05.
+- Later Clinica clinical integration → intentionally deferred to a new future spec/plan after first-demo acceptance.
+
+### Step scan
+
+Every implementation/research task has:
+- one bounded deliverable;
+- explicit files/artifacts;
+- consumed/produced interfaces;
+- checkable steps;
+- verification or acceptance evidence;
+- a commit/freeze point.
+
+### Type/interface consistency
+
+Critical cross-plan interfaces were checked:
+- `ToothID`
+- `PeriodontalSite`
+- `PeriodontalSurface`
+- `SiteMeasurement`
+- `FullMouthWedge`
+- `FullMouthScoreFindings`
+- `PeriodontalExam`
+- `PeriodontalExamStore`
+- geometry contracts from Plan 01/03
+- summary-provider boundary.
+
+Later Task Goal Packets must copy these names exactly from the accepted plan revision.
+
+### Review Focus coverage
+
+The five master Review Focus risks are covered by:
+1. site/orientation → Plan 03 asymmetric geometry tests;
+2. GM sign → Plan 03 display-adapter tests;
+3. finding conflation → Plan 02 type tests + Plan 04 interaction tests;
+4. round-trip loss → Plan 04 JSON + UI round-trip tests;
+5. touch mismatch → Plan 05 touch-usability acceptance.
+
+### Proportion
+
+The approved spec is intentionally implemented by five smaller plans. No individual plan attempts to transcribe the entire application. Function bodies are omitted except where the spec fixes an exact formula/contract.
