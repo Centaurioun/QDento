@@ -147,28 +147,36 @@
 **Files:**
 - Create: `PeriodontalIOS/Summary/PeriodontalMetrics.swift`
 - Create: `PeriodontalIOS/Summary/PeriodontalSummaryProviding.swift`
-- Create: `PeriodontalIOS/Summary/ParitySummaryProvider.swift`
+- Create: `PeriodontalIOS/Summary/QDentoParitySummaryProvider.swift`
 - Create: `PeriodontalIOS/Features/PeriodontalChart/RiskSummaryView.swift`
 - Test: `PeriodontalIOSTests/Summary/PeriodontalMetricsTests.swift`
 
 **Interfaces:**
 - Produces:
-  - descriptive metric result types;
-  - replaceable summary provider protocol;
+  - modern descriptive metric result types;
+  - `PeriodontalSummaryProviding` replaceable protocol;
+  - `QDentoParitySummaryProvider` isolated legacy/parity adapter;
   - presentation model separate from future clinical classification engine.
 
-- [ ] **Step 1: Write failing assessed-site metric tests**
-  - BOP percentage uses assessed six-site BOP denominator.
-  - Do not equate QDento legacy HI with Clinica plaque percentage.
+- [ ] **Step 1: Write failing modern descriptive-metric tests**
+  - BOP/plaque/suppuration percentages use assessed-site denominators for the future clinical model.
+  - Null/unassessed is distinct from false/negative.
 
-- [ ] **Step 2: Implement descriptive metrics**
+- [ ] **Step 2: Write failing QDento parity-summary tests from the Plan 01 contract**
+  - BOP, FMBS, and FMPS/HI values reproduce the frozen legacy parity formulas for the deterministic fixtures.
+  - Disabled/missing teeth affect denominators exactly as the parity contract specifies.
+  - QDento legacy HI is never labeled or exposed as if it were Clinica six-site plaque percentage.
 
-- [ ] **Step 3: Define summary provider protocol**
-  - No Stage/Grade implementation in parity provider unless explicitly fixture-driven.
+- [ ] **Step 3: Implement modern descriptive metrics**
 
-- [ ] **Step 4: Implement QDento-inspired presentation shell**
+- [ ] **Step 4: Define summary provider protocol and implement `QDentoParitySummaryProvider`**
+  - Keep parity formulas isolated and explicitly legacy/reference-scoped.
+  - No final Stage/Grade implementation unless a fixture supplies a display-only reference result.
 
-- [ ] **Step 5: Run tests/build and commit**
+- [ ] **Step 5: Implement QDento-inspired presentation shell**
+  - The shell can display parity-provider values while remaining replaceable by later Clinica/literature-backed providers.
+
+- [ ] **Step 6: Run tests/build and commit**
 
 ### Task 6: Local exam persistence
 
