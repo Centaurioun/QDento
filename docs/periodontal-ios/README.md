@@ -50,3 +50,10 @@ Independent plan review:
 - `docs/superpowers/reviews/2026-09-30-periodontal-ios-plan-review.md`
   - Second adversarial review of the approved spec + implementation plans.
   - Records source-backed plan corrections for PD/CAL/GM editing, attached gingiva/recession, tooth rendering/provenance, parity-summary separation, and final reviewer expansion.
+
+
+Plan 02 execution start:
+- `docs/superpowers/task-goals/2026-09-30-p02-t1-ios-xcode-foundation.md`
+  - First Swift/iOS implementation prompt.
+  - Creates the private `Centaurioun/periodontal-ios` repository and verified Xcode/Simulator baseline only.
+  - Consumes the frozen Plan 01 contract from `freeze/p01-rendering-parity-contract-v1`.
