@@ -815,3 +815,183 @@ Key refinements incorporated into the project direction:
 
 This second pass does not alter the core hybrid-authority decision:
 QDento for preferred visual/interaction behavior, Clinica for structured periodontal domain and accepted clinical logic, and a new native Swift/SwiftUI implementation for the future mobile product.
+
+
+## 31. Unknown legacy intent is not automatically a blocker
+
+A new product rule was adopted after reviewing the remaining unresolved QDento questions.
+
+We did not write QDento and do not need to recover every undocumented author intention before designing the new iOS application.
+
+Unknown legacy semantics must now be classified into one of three groups:
+
+### A. Recover because it changes visible parity
+
+Investigate when the unknown directly changes the QDento behavior we want to reproduce.
+
+Examples:
+- which visible contour point moves for a specific measurement site;
+- upper/lower surface transforms;
+- the final visual placement of BOP markers;
+- tooth-to-control alignment.
+
+These are worth runtime verification because a wrong answer would make the parity renderer visibly or clinically incorrect.
+
+### B. Make an explicit new-product decision
+
+If QDento exposes a useful control but does not document its clinical meaning, the future iOS application may define a clinically coherent meaning explicitly rather than guessing the original author's intention.
+
+The QDento four-part FMPS/FMBS control is the main example.
+
+Source-verified facts:
+- four wedges per tooth;
+- display order is left, up, right, down;
+- FMPS and FMBS are separate persisted arrays;
+- the four wedges are visually compact and useful.
+
+Not source-verified:
+- anatomical labels for the four wedge directions.
+
+Current recommendation for later clinical review:
+- the two horizontal wedges should represent the interproximal directions in a quadrant-aware way;
+- the vertical wedges should represent the outer/inner tooth surfaces;
+- exact labels should be confirmed with a periodontist / clinical colleague before the production semantics are frozen.
+
+This recommendation is NOT yet a frozen clinical mapping.
+
+The application can proceed with stable visual wedge identifiers such as:
+- left;
+- up;
+- right;
+- down
+
+until expert review finalizes clinical names.
+
+### C. Defer because it does not block the first parity experiment
+
+Questions that do not affect the first visual/interaction prototype should remain deferred.
+
+Examples:
+- final production terminology for every legacy summary value;
+- App Store distribution details;
+- final proprietary asset replacement;
+- Android design;
+- optional advanced history workflows.
+
+### Governing rule
+
+Unknown QDento author intent is not automatically an implementation blocker.
+
+Where QDento behavior is underspecified, the new application should:
+1. preserve source-observable behavior where it matters;
+2. document any new clinical/product decision as a new decision;
+3. avoid presenting inference as recovered QDento fact;
+4. defer decisions that do not block the next milestone.
+
+## 32. Planning and execution strategy decision
+
+The future iOS work will not be delegated as one giant Codex mission.
+
+The preferred engineering workflow is phased and evidence-gated.
+
+### Rejected approach: one monolithic Codex task
+
+Reasons:
+- too much mixed context;
+- difficult review;
+- one wrong early assumption can contaminate the entire app;
+- poor rollback granularity;
+- harder to compare QDento visual parity independently from Clinica clinical logic.
+
+### Rejected approach: maximum micro-task fragmentation from the start
+
+Reasons:
+- excessive coordination overhead;
+- unstable interfaces;
+- agents may implement conflicting local assumptions before core contracts are frozen.
+
+### Preferred approach: phased task-goal packets
+
+Use one coordinating agent / ChatGPT orchestration layer and separate Codex instances for independent deliverables.
+
+Each Codex instance receives a narrow **Task Goal Packet** rather than one endless master prompt.
+
+A Task Goal Packet is still a prompt, but it is organized around:
+- one explicit goal;
+- required source documents;
+- allowed repositories/files;
+- required skills/plugins;
+- constraints;
+- expected artifacts;
+- exact verification evidence;
+- stop condition.
+
+This format is preferred over a vague “goal only” because Codex needs enough local context to operate safely, while still keeping the scope narrow.
+
+### Parallelism rule
+
+Use multiple subagents only where work is independent.
+
+Parallel examples:
+- QDento contour runtime mapping;
+- FMPS/FMBS/BOP visual behavior capture;
+- parity fixture definition;
+- iOS architecture review.
+
+Sequential examples:
+- freeze the domain/rendering contract before implementation;
+- establish the Xcode project before feature work;
+- define shared interfaces before parallel feature implementation;
+- integrate and verify before the next dependent phase.
+
+### Agent write rights
+
+Research subagents may write only to dedicated documentation paths when explicitly authorized.
+
+Implementation agents later should use isolated branches/worktrees and only modify files within their assigned task scope.
+
+Reviewer agents should be read-only unless a separate remediation task explicitly gives them write authority.
+
+### iOS skill rule
+
+For any Codex task that touches:
+- Swift;
+- SwiftUI;
+- Xcode project structure;
+- simulator verification;
+- iOS rendering;
+- iOS performance/memory;
+
+include the exact plugin reference:
+
+`[@Build iOS Apps](plugin://build-ios-apps@openai-curated-remote)`
+
+Pure QDento/Clinica evidence-research tasks do not need that plugin unless the task also evaluates translation into iOS architecture.
+
+### Build iOS Apps skill sequence
+
+Use early:
+- swiftui-ui-patterns;
+- swiftui-view-refactor.
+
+Use once a runnable app exists:
+- ios-debugger-agent;
+- ios-simulator-browser.
+
+Use after behavior is correct:
+- swiftui-performance-audit;
+- ios-ettrace-performance when justified by evidence;
+- ios-memgraph-leaks when justified by evidence.
+
+Defer:
+- ios-app-intents;
+- swiftui-liquid-glass.
+
+### Execution principle
+
+Every implementation phase should end with:
+- its own verification evidence;
+- independent review where practical;
+- a freeze point before dependent work begins.
+
+The project should prefer a slower sequence of small verified milestones over one large speculative implementation.
