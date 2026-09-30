@@ -20,6 +20,8 @@
 - Domain must distinguish natural teeth from implants.
 - Domain site enum is exactly MB/B/DB/ML/L/DL.
 - Canonical clinical GM: positive = recession/apical, negative = coronal; CAL = PD + GM.
+- Direct PD/CAL/GM editing semantics come from the accepted Plan 01 transition contract; do not invent them in SwiftUI.
+- Attached gingiva is stored per applicable tooth surface; recession is derived and must not be redundantly persisted.
 - Four QDento parity wedges use neutral enum values left/up/right/down.
 - BOP is six-site; FMBS/FMPS are four-wedge findings.
 - No final clinical Stage/Grade/risk engine in this plan.
@@ -47,6 +49,7 @@ PeriodontalIOS/
     PeriodontalSurface.swift
     PeriodontalSite.swift
     SiteMeasurement.swift
+    ToothSurfaceMeasurement.swift
     Mobility.swift
     Furcation.swift
     FullMouthWedge.swift
@@ -151,7 +154,7 @@ docs/
 
 - [ ] **Step 6: Run focused tests; expected PASS**
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 8: Commit**
   ```bash
   git add PeriodontalIOS/Domain/ToothID.swift PeriodontalIOS/Domain/PeriodontalSite.swift PeriodontalIOSTests/Domain
   git commit -m "feat: add tooth and periodontal site domain"
@@ -161,6 +164,7 @@ docs/
 
 **Files:**
 - Create: `PeriodontalIOS/Domain/SiteMeasurement.swift`
+- Create: `PeriodontalIOS/Domain/ToothSurfaceMeasurement.swift`
 - Create: `PeriodontalIOS/Domain/Mobility.swift`
 - Create: `PeriodontalIOS/Domain/Furcation.swift`
 - Create: `PeriodontalIOS/Domain/FullMouthWedge.swift`
@@ -171,6 +175,7 @@ docs/
   - `enum MeasurementSource: String, Codable, Sendable { case derived, manual }`
   - `struct AttachmentLevel: Codable, Equatable, Sendable { var valueMM: Int?; var source: MeasurementSource }`
   - `struct SiteMeasurement: Codable, Equatable, Sendable`
+  - `struct ToothSurfaceMeasurement: Codable, Equatable, Sendable { var attachedGingivaMM: Int? }`
   - `var probingDepthMM: Int?`
   - `var gingivalMarginMM: Int?`
   - `var clinicalAttachmentLevel: AttachmentLevel`
@@ -180,24 +185,29 @@ docs/
   - `struct WedgeFindings: Codable, Equatable, Sendable` with explicit nullable `left/up/right/down` fields
   - `struct FullMouthScoreFindings: Codable, Equatable, Sendable { var fmps: WedgeFindings; var fmbs: WedgeFindings }`.
 
-- [ ] **Step 1: Write failing CAL/GM tests**
-  - Positive GM adds to PD.
-  - Negative GM subtracts from PD.
+- [ ] **Step 1: Write failing CAL/GM and edit-contract tests**
+  - Positive clinical GM adds to PD.
+  - Negative clinical GM subtracts from PD.
   - Not-assessed values remain nil.
-  - Manual CAL, if supported by the struct, remains distinguishable from derived CAL.
+  - Manual versus derived CAL remains distinguishable.
+  - The Plan 01 transition table can represent direct PD edit, direct CAL edit, and direct GM edit without inconsistent duplicate truth.
 
 - [ ] **Step 2: Run tests and confirm failure**
 
 - [ ] **Step 3: Implement measurement value/source model**
 
-- [ ] **Step 4: Write finding-cardinality/type-safety tests**
+- [ ] **Step 4: Write surface-supplement tests**
+  - Attached gingiva can be assessed only on surfaces marked applicable by the frozen contract.
+  - Recession is derived from site measurements and is not encoded as an independent persisted truth.
+
+- [ ] **Step 5: Write finding-cardinality/type-safety tests**
   - BOP is site-level.
   - FMPS/FMBS use four `FullMouthWedge` keys.
   - Mobility accepts 0–3 or nil.
 
-- [ ] **Step 5: Implement findings**
+- [ ] **Step 6: Implement findings**
 
-- [ ] **Step 6: Run tests; expected PASS**
+- [ ] **Step 7: Run tests; expected PASS**
 
 - [ ] **Step 7: Commit**
 
