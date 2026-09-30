@@ -117,13 +117,15 @@
 - Consumes: approved spec; known QDento measurement semantics; screenshots/runtime available.
 - Produces: fixture definitions later mirrored in Swift tests/UI.
 
-- [ ] **Step 1: Define six fixtures**
+- [ ] **Step 1: Define eight fixtures**
   - healthy baseline;
   - asymmetric 3-site contour;
   - recession/GM sign case;
+  - direct CAL-edit transition case;
+  - attached-gingiva/recession surface case;
   - BOP case;
   - FMPS/FMBS wedge case;
-  - missing/implant case.
+  - missing/implant tooth-visual case.
 
 - [ ] **Step 2: Give each fixture explicit input values**
   - Tooth/FDI, site values, findings, tooth state, expected visible relationships.
