@@ -50,6 +50,8 @@ Path:
 Produces:
 - source/runtime evidence for contour/site orientation;
 - source/runtime evidence for FMPS/FMBS/BOP alignment;
+- source/runtime evidence for PD/CAL/GM edit transitions plus attached-gingiva/recession behavior;
+- tooth-rendering/asset/provenance closure;
 - deterministic QDento reference fixtures;
 - frozen rendering/parity contract.
 
@@ -76,6 +78,7 @@ Produces:
 - pure QDento-faithful contour geometry;
 - explicit GM display adapter;
 - wedge and BOP geometry primitives;
+- tooth visual rendering/provider layer with prototype provenance;
 - static upper/lower chart shell using deterministic fixture data.
 
 Depends on Plans 01–02.
@@ -85,7 +88,8 @@ Path:
 `docs/superpowers/plans/2026-09-30-04-interaction-persistence-summary.md`
 
 Produces:
-- measurement editing + live contours;
+- PD/CAL/GM editing + live contours;
+- attached-gingiva entry + derived recession;
 - BOP;
 - FMPS/FMBS;
 - mobility/furcation;
@@ -102,7 +106,7 @@ Path:
 Produces:
 - QDento ↔ iOS deterministic parity evidence;
 - simulator/device interaction evidence;
-- independent review results;
+- seven independent review results, including provenance and accessibility/touch;
 - targeted refactor/performance/memory hardening only where evidence requires it;
 - first-demo acceptance/freeze report.
 
@@ -314,3 +318,64 @@ The five master Review Focus risks are covered by:
 ### Proportion
 
 The approved spec is intentionally implemented by five smaller plans. No individual plan attempts to transcribe the entire application. Function bodies are omitted except where the spec fixes an exact formula/contract.
+
+
+## Independent plan review — revision 2
+
+A fresh pre-execution review was performed after the first plan set was written.
+
+### Material corrections
+
+1. **PD/CAL/GM editing parity added**
+   - QDento source proves all three values are editable.
+   - Plan 01 now freezes the exact transition rules before Swift implementation.
+   - Plan 04 must test direct PD, CAL, and GM editing separately.
+
+2. **Attached gingiva + recession restored to scope**
+   - QDento persists `AG[64]`.
+   - Recession is a read-only derived surface summary.
+   - The original plan omitted both even though they are visible in the selected workspace.
+
+3. **Tooth rendering/asset layer added**
+   - The original plan described tooth states but did not give the central tooth visuals their own rendering/provenance task.
+   - Plan 01 now closes source/asset evidence; Plan 03 implements a replaceable native tooth-visual layer.
+
+4. **Orientation lock softened**
+   - Landscape is the first parity-validation environment, not a permanent product lock.
+   - The Xcode project must not prematurely hard-disable portrait unless later usability evidence justifies it.
+
+5. **Review fan-out increased**
+   - Final review expands from five to seven independent reviewers:
+     domain, geometry, SwiftUI, persistence, parity-adversarial, accessibility/touch, and provenance/licensing.
+
+### Six-cycle re-review
+
+#### Cycle 1 — Accuracy & Fundamental Correction
+- Re-checked QDento source instead of trusting the previous plan summary.
+- Corrected the false simplification that CAL could be treated as derived/display-only.
+- Restored source-visible AG/recession behavior.
+
+#### Cycle 2 — Completeness & Gap Analysis
+- Added tooth visual rendering/provenance.
+- Added AG/recession to persistence and parity fixtures.
+- Added direct edit semantics for PD/CAL/GM.
+
+#### Cycle 3 — Structure & Architecture
+- Kept edit semantics in Behavior rather than SwiftUI.
+- Kept tooth visual state/provider separate from periodontal geometry and domain.
+- Kept derived recession out of redundant persistence.
+
+#### Cycle 4 — Adversarial / Critical Review
+- Challenged the landscape-first choice and prevented it from becoming an irreversible orientation lock.
+- Challenged visual parity plans that could succeed without a real tooth-rendering layer.
+- Challenged the assumption that Clinica-style CAL derivation alone reproduces QDento interaction.
+
+#### Cycle 5 — Usability & Goal Fit
+- Preserved compact QDento-style controls.
+- Kept the central tooth image and live numeric/contour relationship as the student-facing priority.
+- Deferred final touch-entry optimization until an actual iPhone prototype can be tested.
+
+#### Cycle 6 — Final Synthesis / Regression Check
+- Confirmed the hybrid authority model is unchanged.
+- Confirmed no final Stage/Grade/risk engine was accidentally pulled into the first demo.
+- Confirmed the new tasks close omissions rather than expanding into unrelated product scope.
