@@ -792,3 +792,26 @@ Cycle 6 — Final synthesis and regression check
 - checked current decisions against earlier reversals;
 - retained important rejected approaches and the reasons they were rejected;
 - kept this document explicitly at brainstorming status rather than silently turning it into an implementation plan.
+
+
+## 30. Second brainstorming refinement
+
+A second independent brainstorming / six-cycle pass was completed against the written notes and QDento source.
+
+Canonical review record:
+`docs/periodontal-ios/2026-09-30-second-brainstorming-review.md`
+
+Key refinements incorporated into the project direction:
+
+- QDento FMPS/FMBS four-part geometry is now source-verified as index modulo four = left, up, right, down.
+- The visual wedge order is resolved, but anatomical labeling of those four wedges remains unresolved and must not be invented.
+- FMPS and FMBS are independently serialized QDento periodontal fields, not presentation-only artifacts.
+- QDento BOP is a separate six-site persisted finding and must not be conflated with four-part FMBS.
+- Mobility persistence mismatch is directly verified: mobility exists in `PerioStatus` but is omitted by the periodontal serializer.
+- QDento date changes do not reload date-specific tooth status; this legacy behavior should not become an iOS parity requirement.
+- QDento same-day new/existing exam behavior is treated as legacy lifecycle behavior rather than a new-product requirement.
+- The user-observed central/interproximal contour relationship remains a required visual goal, but exact anatomical labels still require runtime sentinel verification.
+- The remaining QDento research scope is now limited to runtime visual/orientation mapping and deterministic parity fixtures rather than another broad audit.
+
+This second pass does not alter the core hybrid-authority decision:
+QDento for preferred visual/interaction behavior, Clinica for structured periodontal domain and accepted clinical logic, and a new native Swift/SwiftUI implementation for the future mobile product.
