@@ -107,3 +107,15 @@ Rechecked the revised plans against the approved design:
 Use the revised plan set.
 
 Before executing Plan 01, the user should review the revised roadmap once more because the plan now explicitly restores PD/CAL/GM edit parity, attached gingiva/recession, and the tooth visual/provenance layer.
+
+
+## Additional review refinement
+
+A post-edit verification pass found and corrected plan-document numbering drift introduced while inserting new steps.
+
+The same pass also strengthened deterministic fixtures so the future parity suite now includes:
+- a direct CAL-edit transition case;
+- an attached-gingiva / derived-recession case;
+- a missing/implant tooth-visual case.
+
+This matters because those behaviors were precisely the omissions identified by the independent review; they now have explicit fixture coverage rather than existing only as prose requirements.
