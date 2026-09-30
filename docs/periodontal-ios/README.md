@@ -33,3 +33,14 @@ Formal design specification:
   - Consolidates the two brainstorming rounds into the architectural design proposed for human approval.
   - Defines the phased multi-agent strategy and the Task Goal Packet model.
   - Must be approved before the separate implementation plan is written.
+
+
+Approved-spec implementation planning set:
+- `docs/superpowers/plans/2026-09-30-periodontal-ios-master-roadmap.md`
+- `docs/superpowers/plans/2026-09-30-01-runtime-parity-evidence-closure.md`
+- `docs/superpowers/plans/2026-09-30-02-ios-foundation-domain.md`
+- `docs/superpowers/plans/2026-09-30-03-geometry-static-chart.md`
+- `docs/superpowers/plans/2026-09-30-04-interaction-persistence-summary.md`
+- `docs/superpowers/plans/2026-09-30-05-parity-acceptance-hardening.md`
+
+These plans implement the approved design in gated phases. They are intended for separate Codex instances / Task Goal Packets, not one monolithic implementation session.
