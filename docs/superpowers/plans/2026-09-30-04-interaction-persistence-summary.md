@@ -81,7 +81,7 @@
 - [ ] **Step 2: Implement tap/hit-area behavior**
 - [ ] **Step 3: Verify blood-drop-style active marker**
 - [ ] **Step 4: Run unit/UI tests**
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ### Task 3: FMPS/FMBS four-wedge interaction
 
@@ -167,6 +167,7 @@
 **Files:**
 - Create: `PeriodontalIOS/Persistence/PeriodontalExamStore.swift`
 - Create: `PeriodontalIOS/Persistence/JSONPeriodontalExamStore.swift`
+- Create: `PeriodontalIOS/Persistence/ExamStorageLocation.swift`
 - Test: `PeriodontalIOSTests/Persistence/JSONPeriodontalExamStoreTests.swift`
 
 **Interfaces:**
@@ -180,9 +181,13 @@
 - [ ] **Step 2: Write failing update-existing-exam test**
   - Explicit exam ID; do not copy QDento same-day ambiguity.
 
-- [ ] **Step 3: Implement atomic JSON store**
+- [ ] **Step 3: Implement storage location abstraction**
+  - Production/demo store uses Application Support.
+  - Tests inject a temporary directory.
 
-- [ ] **Step 4: Run persistence tests**
+- [ ] **Step 4: Implement atomic JSON store**
+
+- [ ] **Step 5: Run persistence tests**
 
 - [ ] **Step 5: Commit**
 
