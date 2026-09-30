@@ -182,3 +182,70 @@ The user has already selected the multi-agent/separate-instance execution style;
 ## Master stop condition
 
 Do not begin Clinica clinical integration until Plan 05 has accepted the first-demo parity baseline.
+
+
+## Branch/worktree and online-research policy
+
+### Branch/worktree rule
+
+Execution happens in isolated branches/worktrees.
+
+Research lanes:
+- one branch per lane when they write documentation;
+- each branch starts from the accepted planning/evidence base;
+- only the assigned documentation path may be written.
+
+Implementation tasks:
+- one task branch/worktree per Codex instance;
+- branch names should use the plan/task identifier, for example `feat/p02-t3-measurement-semantics`;
+- a dependent task starts from the accepted commit produced by its prerequisite task or from the integration branch that already contains that accepted work.
+
+Reviewers:
+- read-only against the candidate branch;
+- no hidden fixes;
+- remediation receives a fresh branch/task.
+
+### Online-research rule
+
+Do not use general web research to decide QDento implementation facts that can be read from source/runtime evidence.
+
+Web/current documentation is appropriate only when:
+- an Apple/Xcode/Swift API needs current verification;
+- Build iOS Apps guidance directs the agent to current platform documentation;
+- a later clinical-literature task explicitly requires evidence outside Clinica/QDento.
+
+Any outside-source conclusion must be labeled separately from repository/runtime evidence.
+
+## Improved 6-Cycle Iterative Refinement applied to this plan set
+
+### Cycle 1 — Accuracy & Fundamental Correction
+- Kept QDento visual authority separate from Clinica domain/clinical authority.
+- Prevented the plan from treating legacy QDento lifecycle bugs as parity requirements.
+- Required the GM sign bridge to be explicit and testable.
+- Kept BOP, FMBS, FMPS, and six-site plaque as distinct concepts.
+
+### Cycle 2 — Completeness & Gap Analysis
+- Added repository/Xcode foundation, provenance/source-document handoff, deterministic fixtures, persistence, summary-shell, parity acceptance, touch review, and reviewer remediation.
+- Added agent write-rights, branch/worktree isolation, and online-research policy.
+
+### Cycle 3 — Structure & Architecture
+- Split the project into five independently reviewable plans instead of one oversized plan.
+- Ordered domain before geometry, geometry before interaction, and interaction before parity acceptance.
+- Kept later Clinica clinical integration in a separate future spec/plan.
+
+### Cycle 4 — Adversarial / Critical Review
+- Added asymmetric geometry tests to catch mirrored-but-plausible site errors.
+- Added round-trip tests for mobility/furcation/wedge/BOP state.
+- Added reviewer roles for domain, geometry, SwiftUI, persistence, and adversarial parity.
+- Prevented performance/refactor work from running before correctness.
+
+### Cycle 5 — Usability & Goal Fit
+- Preserved the student-facing QDento interaction as the first-demo goal.
+- Kept compact controls while requiring realistic touch acceptance.
+- Avoided premature portrait redesign and clinical feature expansion.
+
+### Cycle 6 — Final Synthesis, Regression Check & Polish
+- Checked task dependencies and interfaces across all five plans.
+- Ensured every Swift/iOS task carries the Build iOS Apps requirement.
+- Ensured research-only Plan 01 does not require the iOS plugin unnecessarily.
+- Ensured no TODO/TBD placeholders are required for execution; remaining unknowns are expressed as evidence gates or explicit later product decisions.
