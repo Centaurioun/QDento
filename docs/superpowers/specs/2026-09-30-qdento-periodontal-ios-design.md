@@ -287,13 +287,15 @@ If simulator/device testing shows poor touch accuracy:
 - one native iOS app;
 - one demo examination context;
 - upper and lower arch;
-- six-site PD/GM/CAL;
+- six-site PD/GM/CAL with explicit parity editing behavior for PD, CAL, and GM;
+- per-surface attached-gingiva entry where clinically/applicably supported by the selected QDento screen;
+- derived recession surface summaries;
 - dynamic contours;
 - BOP;
 - FMPS/FMBS compact controls;
 - mobility;
 - furcation;
-- basic tooth/implant/missing state;
+- basic tooth/implant/missing state with a dedicated tooth-visual rendering layer;
 - local save/reopen;
 - summary/risk presentation shell;
 - deterministic parity fixtures.
@@ -585,7 +587,65 @@ Kept the student-facing visual feedback and touch use case central while deferri
 ### Cycle 6 — Final synthesis
 Converted the brainstorming conclusions into a reviewable design with clear source authorities, phase boundaries, agent permissions, and explicit non-blocking unknowns.
 
-## 29. Approval gate
+## 29. Plan-review amendments
+
+The approved design was reviewed again before execution. The review found three source-supported scope corrections that are consistent with the original user intent and do not change the core architecture.
+
+### 29.1 PD / CAL / GM are all editable parity inputs
+
+QDento source connects all three controls to presenter edit handlers:
+
+- PD → `pdChanged`;
+- CAL → `calChanged`;
+- GM → `gmChanged`.
+
+The first iOS parity demo must therefore not assume that CAL is display-only.
+
+The implementation must freeze an explicit edit-transition contract before coding:
+- what is held constant when PD changes;
+- what is held constant when CAL changes;
+- what is recalculated when GM changes;
+- how the Clinica clinical GM sign convention maps to the QDento-style display/edit behavior;
+- which legacy range/constraint behaviors are parity-critical and which become explicit new-product rules.
+
+### 29.2 Attached gingiva and recession are part of the selected QDento workspace
+
+QDento exposes:
+- two attached-gingiva values per tooth/surface pair through the persisted `AG[64]` array;
+- read-only recession values derived from the three sites on each surface.
+
+These were missing from the first plan draft.
+
+The first demo should include them unless the runtime evidence phase finds that a particular surface is explicitly not applicable.
+
+The new domain must not store derived recession redundantly when it can be computed from canonical site measurements.
+
+### 29.3 Tooth visual rendering requires its own plan boundary
+
+The central tooth image is essential to the educational value of the QDento screen.
+
+The implementation therefore needs:
+- an explicit tooth visual descriptor/state;
+- a rendering/provider abstraction;
+- documented prototype asset provenance;
+- separate missing/implant handling;
+- the ability to replace QDento-derived prototype artwork later without rewriting domain or geometry.
+
+### 29.4 Prototype asset/provenance rule
+
+QDento image reuse for the private parity demo must remain explicitly marked as prototype/reference use.
+
+The new iOS repository must keep a provenance manifest for every QDento-derived or QDento-referenced visual asset.
+
+Future public/proprietary distribution requires a separate asset/code licensing review and, where needed, independent replacement artwork.
+
+### 29.5 Mobile orientation remains experimental
+
+Landscape is a useful first parity-validation environment because the QDento chart is wide, but the product must not hard-lock its final orientation during the foundation phase.
+
+The first implementation may validate parity in landscape while keeping portrait optimization and final orientation policy as later evidence-based UX decisions.
+
+## 30. Approval gate
 
 This specification has been approved by the user.
 
