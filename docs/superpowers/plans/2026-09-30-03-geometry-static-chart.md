@@ -22,6 +22,16 @@
 - Neutral wedge geometry remains left/up/right/down.
 - Subagents use GPT-6 Luna only.
 
+## Initial mobile layout decision for parity work
+
+For the first static/parity shell:
+- use one arch at a time, matching the QDento mental model;
+- make the parity workspace landscape-first;
+- preserve clinically useful tooth/control scale rather than squeezing all 16 teeth into an unreadable width;
+- use horizontal scrolling when the logical arch width exceeds the viewport;
+- do not add pinch-to-zoom as part of this plan;
+- portrait optimization is a later bounded design experiment.
+
 ## Review Focus
 
 1. Positive/negative GM conversion may invert contour movement.
@@ -71,18 +81,21 @@ PeriodontalIOSUITests/
   - `static func qdentoDisplayGM(fromClinicalGM mm: Int) -> Int`
   - chart-surface orientation helpers defined from Plan 01 contract.
 
-- [ ] **Step 1: Write failing sign-bridge tests**
-  - +2 clinical GM maps to -2 QDento-style display GM if Plan 01 confirms sign inversion.
+- [ ] **Step 1: Verify the Plan 01 contract contains an explicit clinical-GM → QDento-display-GM rule**
+  - If it does not, STOP: Plan 01 was not ready for Plan 03.
+
+- [ ] **Step 2: Write failing sign-bridge tests**
+  - Use the exact mapping frozen in the Plan 01 contract; for the currently expected inversion, +2 clinical GM maps to -2 QDento-style display GM.
   - -2 maps to +2.
   - 0 maps to 0.
 
-- [ ] **Step 2: Run and confirm failure**
+- [ ] **Step 3: Run and confirm failure**
 
-- [ ] **Step 3: Implement minimal adapter from frozen contract**
+- [ ] **Step 4: Implement minimal adapter from frozen contract**
 
-- [ ] **Step 4: Run tests; expected PASS**
+- [ ] **Step 5: Run tests; expected PASS**
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
 
 ### Task 2: Pure contour geometry
 
@@ -165,6 +178,8 @@ PeriodontalIOSUITests/
 - [ ] **Step 2: Build chart as focused subviews**
   - No business/geometry calculations in `body`.
   - Upper/lower arch structure follows approved visual contract.
+  - One arch is visible at a time.
+  - Use a landscape-first horizontally scrollable logical chart width; do not shrink controls below usable scale merely to fit the full arch.
 
 - [ ] **Step 3: Add accessibility identifiers**
   - `arch-upper`, `arch-lower`, `tooth-<FDI>`, `contour-<surface>`.
