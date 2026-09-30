@@ -26,11 +26,11 @@
 
 For the first static/parity shell:
 - use one arch at a time, matching the QDento mental model;
-- make the parity workspace landscape-first;
+- validate parity first in landscape because the reference chart is wide, but do not hard-lock the app to landscape during foundation work;
 - preserve clinically useful tooth/control scale rather than squeezing all 16 teeth into an unreadable width;
 - use horizontal scrolling when the logical arch width exceeds the viewport;
 - do not add pinch-to-zoom as part of this plan;
-- portrait optimization is a later bounded design experiment.
+- portrait optimization and final orientation policy remain later evidence-based UX decisions.
 
 ## Review Focus
 
@@ -53,11 +53,16 @@ PeriodontalIOS/
     ToothGeometry.swift
     FullMouthWedgeGeometry.swift
     BOPGeometry.swift
+  Rendering/
+    ToothVisualDescriptor.swift
+    ToothVisualProviding.swift
+    PrototypeToothVisualProvider.swift
   Features/PeriodontalChart/
     PeriodontalChartScreen.swift
     ArchChartView.swift
     ToothChartColumn.swift
-    ContourCanvasView.swift
+    PeriodontalContourView.swift
+    ToothGraphicView.swift
     FullMouthWedgeView.swift
     BOPMarkerView.swift
 PeriodontalIOSTests/
@@ -157,20 +162,54 @@ PeriodontalIOSUITests/
 
 - [ ] **Step 5: Commit**
 
-### Task 4: Static arch/chart shell
+### Task 4: Tooth visual rendering/provider layer
 
-**Execution:** Sequential after Tasks 2–3.
+**Execution:** May run in parallel with Tasks 2–3 after Plan 01 contract and Plan 02 tooth-state types are frozen.
+
+**Files:**
+- Create: `PeriodontalIOS/Rendering/ToothVisualDescriptor.swift`
+- Create: `PeriodontalIOS/Rendering/ToothVisualProviding.swift`
+- Create: `PeriodontalIOS/Rendering/PrototypeToothVisualProvider.swift`
+- Create: `PeriodontalIOS/Features/PeriodontalChart/ToothGraphicView.swift`
+- Test: `PeriodontalIOSTests/Rendering/ToothVisualProviderTests.swift`
+- Create/Update: `docs/provenance/QDENTO_REFERENCE.md`
+
+**Interfaces:**
+- Consumes: Plan 01 tooth visual/asset contract + Plan 02 chart-position state.
+- Produces: replaceable visual descriptor/provider independent of QDento raster filenames.
+
+- [ ] **Step 1: Write failing visual-state mapping tests**
+  - Natural/present, missing, and implant fixture states produce distinct descriptors.
+  - FDI/tooth type mapping matches the frozen parity contract.
+
+- [ ] **Step 2: Implement descriptor/provider protocol**
+  - No Qt concepts in the public API.
+  - Raster/prototype resource choice remains behind the provider.
+
+- [ ] **Step 3: Add only the minimum approved prototype visual assets needed for the first fixtures**
+  - Record source/provenance for every copied or transformed file.
+  - Do not import unrelated QDento treatment layers.
+
+- [ ] **Step 4: Implement `ToothGraphicView`**
+
+- [ ] **Step 5: Run rendering tests/build**
+
+- [ ] **Step 6: Commit**
+
+### Task 5: Static arch/chart shell
+
+**Execution:** Sequential after Tasks 2–4.
 
 **Files:**
 - Create: `PeriodontalIOS/Features/PeriodontalChart/PeriodontalChartScreen.swift`
 - Create: `PeriodontalIOS/Features/PeriodontalChart/ArchChartView.swift`
 - Create: `PeriodontalIOS/Features/PeriodontalChart/ToothChartColumn.swift`
-- Create: `PeriodontalIOS/Features/PeriodontalChart/ContourCanvasView.swift`
+- Create: `PeriodontalIOS/Features/PeriodontalChart/PeriodontalContourView.swift`
 - Modify: `PeriodontalIOS/App/AppModel.swift`
 - Modify: root view file created in Plan 02.
 
 **Interfaces:**
-- Consumes: fixture catalog + pure geometry.
+- Consumes: fixture catalog + pure geometry + tooth visual provider.
 - Produces: read-only chart screen.
 
 - [ ] **Step 1: Add static fixture selector in app model for DEBUG/demo only**
@@ -179,7 +218,8 @@ PeriodontalIOSUITests/
   - No business/geometry calculations in `body`.
   - Upper/lower arch structure follows approved visual contract.
   - One arch is visible at a time.
-  - Use a landscape-first horizontally scrollable logical chart width; do not shrink controls below usable scale merely to fit the full arch.
+  - Include tooth graphic, six-site rows, attached-gingiva row where applicable, and derived recession row.
+  - Use a horizontally scrollable logical chart width when needed; landscape is the first parity-validation orientation but not a permanent lock.
 
 - [ ] **Step 3: Add accessibility identifiers**
   - `arch-upper`, `arch-lower`, `tooth-<FDI>`, `contour-<surface>`.
@@ -193,9 +233,9 @@ PeriodontalIOSUITests/
 
 - [ ] **Step 6: Commit**
 
-### Task 5: Static wedge and BOP views
+### Task 6: Static wedge and BOP views
 
-**Execution:** May run in parallel with Task 4 only if shared chart interfaces were frozen in a prior commit; otherwise sequential.
+**Execution:** May run in parallel with Task 5 only if shared chart interfaces were frozen in a prior commit; otherwise sequential.
 
 **Files:**
 - Create: `PeriodontalIOS/Features/PeriodontalChart/FullMouthWedgeView.swift`
@@ -220,4 +260,6 @@ PeriodontalIOSUITests/
 - Static chart builds/runs.
 - QDento/Clinica sign translation is explicit and tested.
 - Views contain no QDento packed-index business logic.
+- Tooth visuals are replaceable behind the provider abstraction and all prototype assets have provenance entries.
+- Attached-gingiva/recession rows appear according to the frozen contract.
 - Simulator screenshots show correct tooth/site/contour relationships before interaction work starts.
