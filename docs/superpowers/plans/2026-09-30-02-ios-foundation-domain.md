@@ -44,6 +44,7 @@ PeriodontalIOS/
     AppModel.swift
   Domain/
     ToothID.swift
+    PeriodontalSurface.swift
     PeriodontalSite.swift
     SiteMeasurement.swift
     Mobility.swift
@@ -81,6 +82,10 @@ docs/
 - Create standard Xcode project and app/test targets.
 - Create: `README.md`
 - Create: `docs/reference/SOURCE-AUTHORITIES.md`
+- Create: `docs/reference/qdento-ios-design-spec.md`
+- Create: `docs/contracts/rendering-parity-contract-v1.md`
+- Create: `docs/provenance/QDENTO_REFERENCE.md`
+- Create: `docs/provenance/CLINICA_REFERENCE.md`
 
 **Interfaces:**
 - Consumes: approved spec; Plan 01 rendering contract.
@@ -95,14 +100,19 @@ docs/
   - Set iOS 18.0.
   - If unavailable in installed Xcode, STOP and report rather than silently changing the target.
 
-- [ ] **Step 3: Add launch smoke test**
+- [ ] **Step 3: Copy the accepted planning/evidence artifacts into the new repo**
+  - Copy the approved design spec verbatim into `docs/reference/qdento-ios-design-spec.md` with source repository/branch/commit in the header.
+  - Copy the accepted Plan 01 contract verbatim into `docs/contracts/rendering-parity-contract-v1.md`.
+  - Record QDento and Clinica repository/ref provenance in their dedicated files.
+
+- [ ] **Step 4: Add launch smoke test**
   - `LaunchTests.testAppLaunches()` launches the app and asserts root accessibility identifier `periodontal-root` exists.
 
-- [ ] **Step 4: Build/test**
+- [ ] **Step 5: Build/test**
   - Run the Build iOS Apps recommended simulator build/test workflow.
   - Expected: app builds; unit tests pass; UI launch test passes.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 6: Commit**
   ```bash
   git add .
   git commit -m "chore: create periodontal iOS foundation"
@@ -112,6 +122,7 @@ docs/
 
 **Files:**
 - Create: `PeriodontalIOS/Domain/ToothID.swift`
+- Create: `PeriodontalIOS/Domain/PeriodontalSurface.swift`
 - Create: `PeriodontalIOS/Domain/PeriodontalSite.swift`
 - Test: `PeriodontalIOSTests/Domain/ToothIDTests.swift`
 - Test: `PeriodontalIOSTests/Domain/PeriodontalSiteTests.swift`
@@ -119,8 +130,9 @@ docs/
 **Interfaces:**
 - Produces:
   - `struct ToothID: Hashable, Codable, Sendable`
+  - `enum PeriodontalSurface: String, Codable, Sendable { case facial, oral }`
   - `enum PeriodontalSite: String, CaseIterable, Codable, Sendable { case MB, B, DB, ML, L, DL }`
-  - `PeriodontalSite.surface: .facial | .oral`
+  - `var PeriodontalSite.surface: PeriodontalSurface`
 
 - [ ] **Step 1: Write failing FDI validity/order tests**
   - Assert valid permanent FDI values used by the chart.
@@ -156,14 +168,17 @@ docs/
 
 **Interfaces:**
 - Produces:
-  - `struct SiteMeasurement`
+  - `enum MeasurementSource: String, Codable, Sendable { case derived, manual }`
+  - `struct AttachmentLevel: Codable, Equatable, Sendable { var valueMM: Int?; var source: MeasurementSource }`
+  - `struct SiteMeasurement: Codable, Equatable, Sendable`
   - `var probingDepthMM: Int?`
   - `var gingivalMarginMM: Int?`
-  - `var clinicalAttachmentLevelMM: Int?`
+  - `var clinicalAttachmentLevel: AttachmentLevel`
   - `var bop: Bool?`
   - `enum MobilityGrade: Int, Codable { case zero, one, two, three }`
-  - `enum FullMouthWedge: String, CaseIterable, Codable { case left, up, right, down }`
-  - separate FMPS/FMBS finding containers.
+  - `enum FullMouthWedge: String, CaseIterable, Codable, Sendable { case left, up, right, down }`
+  - `struct WedgeFindings: Codable, Equatable, Sendable` with explicit nullable `left/up/right/down` fields
+  - `struct FullMouthScoreFindings: Codable, Equatable, Sendable { var fmps: WedgeFindings; var fmbs: WedgeFindings }`.
 
 - [ ] **Step 1: Write failing CAL/GM tests**
   - Positive GM adds to PD.
